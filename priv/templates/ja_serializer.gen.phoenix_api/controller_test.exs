@@ -42,7 +42,7 @@ defmodule <%= module %>ControllerTest do
     data = json_response(conn, 200)["data"]
     assert data["id"] == "#{<%= singular %>.id}"
     assert data["type"] == "<%= singular %>"<%= for {k, _} <- attrs do %>
-    assert data["attributes"]["<%= k %>"] == <%= singular %>.<%= k %><% end %>
+    assert data["attributes"]["<%= k %>"] == <%= singular %>.<%= unless Application.get_env(:ja_serializer, :key_format, :underscored) do String.replace(k, "_", "-") else k end %><% end %>
   end
 
   test "does not show resource and instead throw error when id is nonexistent", %{conn: conn} do

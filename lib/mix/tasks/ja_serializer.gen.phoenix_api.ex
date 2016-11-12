@@ -1,4 +1,4 @@
-if Code.ensure_loaded?(Phoenix) do
+if Code.ensure_compiled?(Phoenix) do
   defmodule Mix.Tasks.JaSerializer.Gen.PhoenixApi do
     use Mix.Task
 
